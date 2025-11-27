@@ -36,7 +36,7 @@ btnlogout.addEventListener("click", () => {
   isLogged = false;
   window.localStorage.setItem("islogged", "false");
   window.localStorage.removeItem("session");
-  window.location.href = "/";
+  window.location.href = "/safespaceweb/";
   showLogbuttons();
 });
 
