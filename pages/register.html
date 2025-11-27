@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SafeSpace • Register</title>
+    <link rel="stylesheet" href="../style.css" />
+    <script defer src="../scripts/users-control.js"></script>
+
+    <style>
+        .auth-container {
+            max-width: 450px;
+            margin: 100px auto;
+            padding: 30px;
+            background: #ffffff10;
+            border-radius: 14px;
+            backdrop-filter: blur(7px);
+            animation: fadeIn 1.1s ease;
+        }
+
+        .auth-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .auth-container input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            border: none;
+            background: #ffffff25;
+            outline: none;
+            font-size: 1rem;
+        }
+
+        .auth-container input:focus {
+            background: #ffffff35;
+        }
+
+        .auth-container .small-link {
+            display: block;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            text-align: center;
+            opacity: 0.8;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <nav>
+        <a class="logo" href="index.html">SafeSpace
+            <img class="img-logo" src="../assets/logo2.png">
+        </a>
+
+        <ul>
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="download.html">Download</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+
+            <div>
+                <div class="logbuttons">
+                    <li><a id="login" href="login.html" class="login">Log In</a></li>
+                    <li><a id="register" href="register.html" class="register">Register</a></li>
+                </div>
+                <li><a id="logout" class="register">Log Out</a></li>
+            </div>
+        </ul>
+    </nav>
+
+    <!-- ✔ FORMULARIO QUE AHORA FUNCIONA -->
+    <div class="auth-container">
+        <form onsubmit="handleRegister(event)">
+            <h2>Create Your Account</h2>
+            <p style="text-align:center; opacity:0.8; margin-bottom:25px;">
+                Join SafeSpace and start your journey toward a healthier emotional life.
+            </p>
+
+            <input type="text" id="reg-name" placeholder="Full Name" required />
+            <input type="email" id="reg-email" placeholder="Email Address" required />
+            <input type="password" id="reg-pass" placeholder="Password" required />
+            <input type="password" id="reg-pass-confirm" placeholder="Confirm Password" required />
+
+            <button class="btn" type="submit" style="width:100%; text-align:center;">Register</button>
+
+            <a class="small-link" href="login.html">Already have an account? Log in</a>
+        </form>
+    </div>
+
+    <footer style="margin-top: 155px;">
+        © 2025 SafeSpace — All rights reserved
+    </footer>
+
+    <script>
+        function handleRegister(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("reg-name").value;
+            const email = document.getElementById("reg-email").value;
+            const password = document.getElementById("reg-pass").value;
+            const confirm = document.getElementById("reg-pass-confirm").value;
+
+            if (password !== confirm) {
+                alert("Passwords do not match.");
+                return;
+            }
+
+            const result = registerUser(name, email, password);
+
+            alert(result.message);
+
+            if (result.success) {
+                window.location.href = "login.html";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
